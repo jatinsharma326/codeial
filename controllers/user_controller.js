@@ -56,7 +56,11 @@ module.exports.create = (req, res) => {
 //SignIn and create the session for the user
 module.exports.createSession = (req, res) => {
   //This is my create session which is locally authenticated
+
   //find the user
+
+  return res.redirect("/");
+
   // User.findOne({ email: req.body.email }, (err, user) => {
   //   if (err) {
   //     console.log("error in finding user in signingUp");
@@ -75,5 +79,6 @@ module.exports.createSession = (req, res) => {
   //     return res.redirect("back");
   //   }
   // });
+
   //handle user not found
 };
