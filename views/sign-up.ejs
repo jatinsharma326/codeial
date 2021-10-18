@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/card.css" />
+  </head>
+  <body>
+    <div class="signUp">
+      <div class="card">
+        <form action="/create" method="POST">
+          <label>Enter Your Name</label><br />
+          <input
+            placeholder="Enter your password"
+            type="text"
+            name="name"
+            required
+          /><br />
+          <label>Enter Your Email</label><br />
+          <input
+            placeholder="Enter Your email"
+            type="email"
+            name="email"
+            required
+          />
+          <label>Enter Your Password</label><br />
+          <input
+            placeholder="Enter your password"
+            type="Password"
+            name="password"
+            required
+          /><br />
+          <label>Confirm Your Password</label><br />
+          <input
+            placeholder="Enter your password"
+            type="Password"
+            name="confirm_password"
+            required
+          /><br />
+          <button type="submit">Enter</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
