@@ -56,26 +56,24 @@ module.exports.create = (req, res) => {
 //SignIn and create the session for the user
 module.exports.createSession = (req, res) => {
   //This is my create session which is locally authenticated
-
   //find the user
-  User.findOne({ email: req.body.email }, (err, user) => {
-    if (err) {
-      console.log("error in finding user in signingUp");
-      return;
-    }
-    //handle user found
-    if (user) {
-      //handle password which don't match
-      if (user.password != req.body.password) {
-        return res.redirect("back");
-      }
-      //handle session creation
-      res.cookie("user_id", user.id);
-      return res.redirect("/profile");
-    } else {
-      return res.redirect("back");
-    }
-  });
-
+  // User.findOne({ email: req.body.email }, (err, user) => {
+  //   if (err) {
+  //     console.log("error in finding user in signingUp");
+  //     return;
+  //   }
+  //   //handle user found
+  //   if (user) {
+  //     //handle password which don't match
+  //     if (user.password != req.body.password) {
+  //       return res.redirect("back");
+  //     }
+  //     //handle session creation
+  //     res.cookie("user_id", user.id);
+  //     return res.redirect("/profile");
+  //   } else {
+  //     return res.redirect("back");
+  //   }
+  // });
   //handle user not found
 };
