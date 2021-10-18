@@ -55,6 +55,8 @@ module.exports.create = (req, res) => {
 
 //SignIn and create the session for the user
 module.exports.createSession = (req, res) => {
+  //This is my create session which is locally authenticated
+
   //find the user
   User.findOne({ email: req.body.email }, (err, user) => {
     if (err) {
