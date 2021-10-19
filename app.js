@@ -15,6 +15,7 @@ const passport = require("passport");
 const passportLocal = require("./config/passport-local");
 const { Mongoose } = require("mongoose");
 // const MongoStore = require("connect-mongo-session")(session);
+const MongoStore = require("connect-mongo")(session);
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
@@ -31,15 +32,15 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
-    // store: new MongoStore(
-    //   {
-    //     mongooseConnection: db,
-    //     autoRemove: "disabled",
-    //   },
-    //   function (err) {
-    //     console.log(err || "connect mongodb setup ok");
-    //   }
-    // ),
+    store: new MongoStore(
+      {
+        mongooseConnection: db,
+        autoRemove: "disabled",
+      },
+      function (err) {
+        console.log(err || "connect mongodb setup ok");
+      }
+    ),
   })
 );
 app.use(passport.setAuthenticatedUser);
