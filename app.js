@@ -1,3 +1,5 @@
+//Connect mongo helps in to store the cookies
+
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 app = express();
@@ -11,22 +13,36 @@ const db = require("./config/mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("./config/passport-local");
-
+const { Mongoose } = require("mongoose");
+// const MongoStore = require("connect-mongo-session")(session);
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
+//mongo store is used to store the session cookies
 app.use(
   session({
     name: "codeial",
     // TODO change the secret before deployment in production mode
     secret: "blahsomething",
+    //When user not loggedin and if we need to store extra data
     saveUninitialized: false,
+    // It helps in to check the user data
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
+    // store: new MongoStore(
+    //   {
+    //     mongooseConnection: db,
+    //     autoRemove: "disabled",
+    //   },
+    //   function (err) {
+    //     console.log(err || "connect mongodb setup ok");
+    //   }
+    // ),
   })
 );
+app.use(passport.setAuthenticatedUser);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded());

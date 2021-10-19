@@ -1,28 +1,24 @@
 const User = require("../models/users");
 
 module.exports.uProfile = (req, res) => {
-  if (req.cookies.user_id) {
-    User.findById(req.cookies.user_id, (err, user) => {
-      if (user) {
-        return res.render("user", {
-          title: "User Profile",
-          user: user,
-        });
-      }
-      return res.redirect("/login");
-    });
-  } else {
-    return res.render("/login");
-  }
+  return res.render("user", {
+    title: "User Profile",
+  });
 };
 
 //action for signUp
 module.exports.signUp = (req, res) => {
+  if (req.isAuthenticated()) {
+    res.redirect("/profile");
+  }
   return res.render("sign-up");
 };
 
 //action for login
 module.exports.login = (req, res) => {
+  if (req.isAuthenticated()) {
+    res.redirect("/profile");
+  }
   return res.render("login");
 };
 
