@@ -79,6 +79,7 @@ module.exports.createSession = (req, res) => {
   //handle user not found
 };
 
-module.exports.destrySession = (req, res) => {
-  return res.render("signout");
+module.exports.destrpySession = (req, res) => {
+  req.logout();
+  return res.render("/");
 };
